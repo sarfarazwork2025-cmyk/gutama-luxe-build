@@ -14,9 +14,7 @@ const ServicePage = () => {
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
           <h1 className="font-serif text-3xl font-bold text-foreground mb-4">Service Not Found</h1>
-          <Link to="/">
-            <Button>Return Home</Button>
-          </Link>
+          <Link to="/"><Button>Return Home</Button></Link>
         </div>
       </div>
     );
@@ -26,9 +24,13 @@ const ServicePage = () => {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero with image */}
       <section className="relative py-28 md:py-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
+        <div className="absolute inset-0">
+          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+        </div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-secondary/30 mb-6">
@@ -76,7 +78,6 @@ const ServicePage = () => {
               <div className="gold-divider" />
             </div>
           </ScrollReveal>
-
           <div className="max-w-2xl mx-auto space-y-4">
             {service.process.map((step, i) => (
               <ScrollReveal key={i} delay={i * 80}>
@@ -101,7 +102,6 @@ const ServicePage = () => {
               <div className="gold-divider" />
             </div>
           </ScrollReveal>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
               { icon: Shield, text: "Licensed & Fully Insured" },
@@ -129,18 +129,13 @@ const ServicePage = () => {
               <div className="gold-divider" />
             </div>
           </ScrollReveal>
-
           <ScrollReveal>
             <div className="max-w-2xl mx-auto">
               <Accordion type="single" collapsible className="space-y-3">
                 {service.faqs.map((faq, i) => (
                   <AccordionItem key={i} value={`faq-${i}`} className="glass-card px-6 border-border/30 rounded-lg overflow-hidden">
-                    <AccordionTrigger className="text-foreground font-medium hover:no-underline py-5">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed">
-                      {faq.a}
-                    </AccordionContent>
+                    <AccordionTrigger className="text-foreground font-medium hover:no-underline py-5">{faq.q}</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
@@ -154,9 +149,7 @@ const ServicePage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
         <div className="relative container mx-auto px-4 text-center">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ready to Get Started?
-            </h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">Ready to Get Started?</h2>
             <p className="text-muted-foreground text-lg mb-8">Contact us today for a free, no-obligation estimate.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/contact">
