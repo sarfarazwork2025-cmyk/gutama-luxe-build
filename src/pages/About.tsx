@@ -1,11 +1,17 @@
 import { Shield, Target, Users, Award } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
+import aboutTeam from "@/assets/about-team.jpg";
+import aboutAerial from "@/assets/about-aerial.jpg";
+
 const About = () => (
   <>
     {/* Hero */}
-    <section className="relative py-28 md:py-36">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
+    <section className="relative py-28 md:py-36 overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={aboutAerial} alt="Aerial view of Essex County neighborhoods" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
       <div className="relative container mx-auto px-4 text-center">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">About Gutama</h1>
         <div className="gold-divider mb-4" />
@@ -24,15 +30,9 @@ const About = () => (
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-3 mb-6">Built on Trust, Driven by Excellence</h2>
             <div className="gold-divider !mx-0 mb-6" />
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Gutama Home Improvement was founded with a simple mission: to deliver premium-quality roofing and exterior solutions that homeowners can trust for generations. What started as a small, dedicated crew has grown into one of Essex County's most respected home improvement contractors.
-              </p>
-              <p>
-                Every project we take on reflects our commitment to exceptional craftsmanship, honest communication, and lasting results. We treat every home as if it were our own, using only the finest materials and proven techniques to ensure your investment stands the test of time.
-              </p>
-              <p>
-                As a licensed and fully insured contractor, we hold ourselves to the highest industry standards. Our bilingual team serves both English and Spanish-speaking homeowners, ensuring clear communication and a seamless experience from consultation to completion.
-              </p>
+              <p>Gutama Home Improvement was founded with a simple mission: to deliver premium-quality roofing and exterior solutions that homeowners can trust for generations. What started as a small, dedicated crew has grown into one of Essex County's most respected home improvement contractors.</p>
+              <p>Every project we take on reflects our commitment to exceptional craftsmanship, honest communication, and lasting results. We treat every home as if it were our own, using only the finest materials and proven techniques to ensure your investment stands the test of time.</p>
+              <p>As a licensed and fully insured contractor, we hold ourselves to the highest industry standards. Our bilingual team serves both English and Spanish-speaking homeowners, ensuring clear communication and a seamless experience from consultation to completion.</p>
             </div>
           </div>
         </ScrollReveal>
@@ -47,18 +47,14 @@ const About = () => (
             <div className="glass-card p-8">
               <Target className="w-10 h-10 text-primary mb-4" />
               <h3 className="font-serif text-2xl font-bold text-foreground mb-4">Our Mission</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                To provide every homeowner in Essex County with premium roofing and exterior solutions that combine superior craftsmanship, quality materials, and exceptional customer service — all at a fair and transparent price.
-              </p>
+              <p className="text-muted-foreground leading-relaxed">To provide every homeowner in Essex County with premium roofing and exterior solutions that combine superior craftsmanship, quality materials, and exceptional customer service — all at a fair and transparent price.</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <div className="glass-card p-8">
               <Award className="w-10 h-10 text-secondary mb-4" />
               <h3 className="font-serif text-2xl font-bold text-foreground mb-4">Our Vision</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                To be the most trusted name in home improvement across New Jersey — known for transforming homes with integrity, precision, and an unwavering commitment to excellence that sets the standard for the industry.
-              </p>
+              <p className="text-muted-foreground leading-relaxed">To be the most trusted name in home improvement across New Jersey — known for transforming homes with integrity, precision, and an unwavering commitment to excellence that sets the standard for the industry.</p>
             </div>
           </ScrollReveal>
         </div>
@@ -73,6 +69,13 @@ const About = () => (
             <span className="text-secondary text-sm font-medium uppercase tracking-widest">The Team</span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">Professional Crew</h2>
             <div className="gold-divider" />
+          </div>
+        </ScrollReveal>
+
+        {/* Team Photo */}
+        <ScrollReveal>
+          <div className="max-w-4xl mx-auto mb-12 glass-card overflow-hidden">
+            <img src={aboutTeam} alt="Gutama Home Improvement professional crew" className="w-full h-auto" />
           </div>
         </ScrollReveal>
 
@@ -94,7 +97,6 @@ const About = () => (
           ))}
         </div>
 
-        {/* Licensed Badge */}
         <ScrollReveal>
           <div className="mt-16 glass-card max-w-md mx-auto p-6 flex items-center gap-4 border-secondary/30">
             <Shield className="w-12 h-12 text-secondary flex-shrink-0" />

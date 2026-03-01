@@ -4,12 +4,26 @@ import { Phone, ArrowRight, Shield, Star, Clock, DollarSign, Globe } from "lucid
 import { services } from "@/data/services";
 import ScrollReveal from "@/components/ScrollReveal";
 
+import heroBg from "@/assets/hero-bg.jpg";
+import beforeRoof from "@/assets/before-roof.jpg";
+import afterRoof from "@/assets/after-roof.jpg";
+import beforeSiding from "@/assets/before-siding.jpg";
+import afterSiding from "@/assets/after-siding.jpg";
+import beforeFlat from "@/assets/before-flat.jpg";
+import afterFlat from "@/assets/after-flat.jpg";
+import testimonial1 from "@/assets/testimonial-1.jpg";
+import testimonial2 from "@/assets/testimonial-2.jpg";
+import testimonial3 from "@/assets/testimonial-3.jpg";
+import aboutAerial from "@/assets/about-aerial.jpg";
+
 /* ─── Hero ─── */
 const HeroSection = () => (
   <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-    {/* BG gradient */}
-    <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted" />
-    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.3), transparent 50%), radial-gradient(circle at 80% 50%, hsl(var(--gold) / 0.2), transparent 50%)" }} />
+    <div className="absolute inset-0">
+      <img src={heroBg} alt="Luxury home with premium roof installation" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-background/70" />
+      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.4), transparent 50%), radial-gradient(circle at 80% 50%, hsl(var(--gold) / 0.3), transparent 50%)" }} />
+    </div>
 
     <div className="relative container mx-auto px-4 text-center">
       <div className="inline-block px-4 py-1.5 rounded-full border border-secondary/30 mb-6 animate-fade-up">
@@ -37,7 +51,6 @@ const HeroSection = () => (
       </div>
     </div>
 
-    {/* Bottom gradient fade */}
     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
   </section>
 );
@@ -60,15 +73,21 @@ const ServicesGrid = () => (
           const Icon = service.icon;
           return (
             <ScrollReveal key={service.slug} delay={i * 60}>
-              <Link to={`/services/${service.slug}`} className="group glass-card p-6 block hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
+              <Link to={`/services/${service.slug}`} className="group block glass-card overflow-hidden hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
+                <div className="relative h-44 overflow-hidden">
+                  <img src={service.image} alt={service.shortTitle} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                  <div className="absolute bottom-3 left-3 w-10 h-10 rounded-lg bg-primary/90 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-primary-foreground" />
+                  </div>
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-foreground mb-2">{service.shortTitle}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
-                <span className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Learn More <ArrowRight className="w-4 h-4" />
-                </span>
+                <div className="p-5">
+                  <h3 className="font-serif text-lg font-semibold text-foreground mb-2">{service.shortTitle}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3 line-clamp-2">{service.description}</p>
+                  <span className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Learn More <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
               </Link>
             </ScrollReveal>
           );
@@ -117,9 +136,9 @@ const WhyChooseUs = () => (
 
 /* ─── Before & After ─── */
 const beforeAfterItems = [
-  { title: "Roof Transformation", before: "Aging, weather-damaged shingles with leaks and missing tiles", after: "Brand new architectural shingle roof with premium underlayment" },
-  { title: "Siding Upgrade", before: "Faded, cracked vinyl siding with visible water damage", after: "James Hardie fiber cement siding in modern coastal blue" },
-  { title: "Flat Roof Replacement", before: "Ponding water and deteriorated membrane causing interior leaks", after: "New TPO membrane with proper drainage system installed" },
+  { title: "Roof Transformation", beforeImg: beforeRoof, afterImg: afterRoof, before: "Aging, weather-damaged shingles", after: "Brand new architectural shingles" },
+  { title: "Siding Upgrade", beforeImg: beforeSiding, afterImg: afterSiding, before: "Faded, cracked vinyl siding", after: "New fiber cement siding" },
+  { title: "Flat Roof Replacement", beforeImg: beforeFlat, afterImg: afterFlat, before: "Ponding water, deteriorated membrane", after: "New TPO membrane system" },
 ];
 
 const BeforeAfter = () => (
@@ -137,18 +156,15 @@ const BeforeAfter = () => (
         {beforeAfterItems.map((item, i) => (
           <ScrollReveal key={item.title} delay={i * 100}>
             <div className="glass-card overflow-hidden">
-              <div className="grid grid-cols-2 h-48">
-                <div className="bg-muted/40 flex items-center justify-center p-4">
-                  <div className="text-center">
-                    <span className="text-primary text-xs font-bold uppercase tracking-widest">Before</span>
-                    <p className="text-muted-foreground text-xs mt-2">{item.before}</p>
-                  </div>
+              <div className="grid grid-cols-2">
+                <div className="relative h-48">
+                  <img src={item.beforeImg} alt={`Before: ${item.title}`} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-background/30" />
+                  <span className="absolute top-2 left-2 bg-primary/90 text-primary-foreground text-xs font-bold px-2 py-1 rounded">BEFORE</span>
                 </div>
-                <div className="bg-primary/10 flex items-center justify-center p-4">
-                  <div className="text-center">
-                    <span className="text-secondary text-xs font-bold uppercase tracking-widest">After</span>
-                    <p className="text-muted-foreground text-xs mt-2">{item.after}</p>
-                  </div>
+                <div className="relative h-48">
+                  <img src={item.afterImg} alt={`After: ${item.title}`} className="w-full h-full object-cover" />
+                  <span className="absolute top-2 left-2 bg-secondary/90 text-secondary-foreground text-xs font-bold px-2 py-1 rounded">AFTER</span>
                 </div>
               </div>
               <div className="p-4 text-center">
@@ -171,8 +187,12 @@ const municipalities = [
 ];
 
 const ServiceAreas = () => (
-  <section id="service-areas" className="section-padding bg-muted/20">
-    <div className="container mx-auto px-4">
+  <section id="service-areas" className="section-padding relative overflow-hidden">
+    <div className="absolute inset-0 opacity-10">
+      <img src={aboutAerial} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+    </div>
+    <div className="absolute inset-0 bg-background/90" />
+    <div className="relative container mx-auto px-4">
       <ScrollReveal>
         <div className="text-center mb-16">
           <span className="text-secondary text-sm font-medium uppercase tracking-widest">Coverage</span>
@@ -196,9 +216,9 @@ const ServiceAreas = () => (
 
 /* ─── Testimonials ─── */
 const testimonials = [
-  { name: "Michael R.", location: "West Orange, NJ", text: "Gutama transformed our 30-year-old roof into a masterpiece. Professional crew, clean work, and they finished ahead of schedule. Couldn't be happier!", rating: 5 },
-  { name: "Sandra M.", location: "Bloomfield, NJ", text: "After the storm damaged our siding, Gutama was there within hours. They handled the insurance paperwork and did a beautiful job. Highly recommend!", rating: 5 },
-  { name: "Carlos D.", location: "Newark, NJ", text: "Excelente servicio. The team was professional and bilingual which made everything so easy. Our new flat roof is perfect. Thank you Gutama!", rating: 5 },
+  { name: "Michael R.", location: "West Orange, NJ", text: "Gutama transformed our 30-year-old roof into a masterpiece. Professional crew, clean work, and they finished ahead of schedule. Couldn't be happier!", rating: 5, image: testimonial1 },
+  { name: "Sandra M.", location: "Bloomfield, NJ", text: "After the storm damaged our siding, Gutama was there within hours. They handled the insurance paperwork and did a beautiful job. Highly recommend!", rating: 5, image: testimonial2 },
+  { name: "Carlos D.", location: "Newark, NJ", text: "Excelente servicio. The team was professional and bilingual which made everything so easy. Our new flat roof is perfect. Thank you Gutama!", rating: 5, image: testimonial3 },
 ];
 
 const Testimonials = () => (
@@ -222,9 +242,12 @@ const Testimonials = () => (
                 ))}
               </div>
               <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
-              <div>
-                <p className="font-serif font-semibold text-foreground">{t.name}</p>
-                <p className="text-muted-foreground text-sm">{t.location}</p>
+              <div className="flex items-center gap-3">
+                <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover border-2 border-secondary/30" />
+                <div>
+                  <p className="font-serif font-semibold text-foreground">{t.name}</p>
+                  <p className="text-muted-foreground text-sm">{t.location}</p>
+                </div>
               </div>
             </div>
           </ScrollReveal>
